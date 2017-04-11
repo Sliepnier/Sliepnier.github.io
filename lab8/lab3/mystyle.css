@@ -1,0 +1,24 @@
+body {
+    background-image: url("wp.jpg");
+}
+h4{
+	font-family: 'Caveat Brush', cursive;
+	font-size: 1.3em;
+}
+input{
+	font-family: 'Caveat Brush', cursive;
+	font-size: 1.3em;
+}
+form{
+	margin-left: 300px;
+	float: left;
+}
+div.tab{
+	float: right;
+	padding-top: 50px;
+	margin-right: 300px;
+}
+table{
+	font-family: 'Caveat Brush', cursive;
+	font-size: 1.5em;
+}

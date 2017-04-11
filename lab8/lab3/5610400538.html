@@ -1,0 +1,254 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <link href="https://fonts.googleapis.com/css?family=Caveat+Brush" rel="stylesheet">
+  <title>Lab 3</title>
+</head>
+<body>
+  <form action="" method="get" accept-charset="utf-8">
+  <h4>First name :</h4>
+  <input type="text" id="firstname"><br>
+  <h4>Last name :</h4>
+  <input type="text" id="lastname"><br>
+  <h4>Address :</h4>
+  <h4>House number :</h4>
+  <input type="text" id="hsnum"><br>
+  <h4>Street :</h4>
+  <input type="text" id="street"><br>
+  <h4>City :</h4>
+  <input type="text" id="city"><br>
+  <h4>Province :</h4>
+  <input type="text" id="prov"><br>
+  <h4>Zipcode :</h4>
+  <input type="text" id="zip" maxlength="5"><br>
+  <h4>Phone number :</h4>
+  <input type="text" id="phnum" value = "+662" maxlength="11"><br>
+  <h4>Cell phone number :</h4>
+  <input type="text" id="cpnum" value = "+66" maxlength="12"><br>
+  <h4>Date of birth :</h4>
+  <h4>Day : </h4><input type="text" id="day" maxlength="2"><h4>Month : </h4><input type="text" id="month" maxlength="2"><h4>Year : </h4><input type="text" id="year" maxlength="4"><br>
+  <h4>Citizen number :</h4>
+  <input type="text" id="citinum" maxlength="13"><br>
+  <h4>Zodiac Sign :</h4>
+  <select id="zods">
+    <option value="aqua">Aquarius</option>
+    <option value="pisces">Pisces</option>
+    <option value="aries">Aries</option>
+    <option value="taurus">Taurus</option>
+    <option value="gemini">Gemini</option>
+    <option value="cancer">Cancer</option>
+    <option value="leo">Leo</option>
+    <option value="virgo">Virgo</option>
+    <option value="libra">Libra</option>
+    <option value="scopio">Scopio</option>
+    <option value="sagi">Sagittarius</option>
+    <option value="capricorn">Capricorn</option>
+  </select><br>
+  <h4>Zodiac Year :</h4>
+  <select id="zody">
+    <option value="rat">Rat</option>
+    <option value="ox">Ox</option>
+    <option value="tiger">Tiger</option>
+    <option value="rabbit">Rabbit</option>
+    <option value="dragon">Dragon</option>
+    <option value="snake">Snake</option>
+    <option value="horse">Horse</option>
+    <option value="goat">Goat</option>
+    <option value="monkey">Monkey</option>
+    <option value="rooster">Rooster</option>
+    <option value="dog">Dog</option>
+    <option value="pig">Pig</option>
+  </select><br>
+  <h4>Birth day of week :</h4>
+  <select id="bdow">
+    <option value="mon">Monday</option>
+    <option value="tues">Tuesday</option>
+    <option value="wednes">Wednesday</option>
+    <option value="thurs">Thursday</option>
+    <option value="fri">Friday</option>
+    <option value="satur">Saturday</option>
+    <option value="sun">Sunday</option>
+  </select><br>
+  <button type="button" onclick="SaveData()">Save</button><button type="button" onclick="ClearText()">Cancle</button><button type="button" onclick="Submit()">Submit</button>
+
+  </form>
+
+<div id="table" class="tab"></div>
+
+<script>
+    var allField = ["firstname","lastname","hsnum","street","city","prov","zip","phnum","cpnum","day","month","year","citinum","zods","zody","bdow"];
+
+    var firstname = document.getElementById("firstname");
+    firstname.oninput = function(){
+      var patt = new RegExp("[0-9]");
+      if(patt.test(this.value)){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only Text");
+      }
+    };
+
+    var lastname = document.getElementById("lastname");
+    lastname.oninput = function(){
+      var patt = new RegExp("[0-9]");
+      if(patt.test(this.value)){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only Text");
+      }
+    };
+
+    var hsnum = document.getElementById("hsnum");
+    hsnum.oninput = function(){
+      var patt = new RegExp("[^0123456789\/]");
+      if(patt.test(this.value)){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only Numeric");
+      }
+    };
+
+    var zipcode = document.getElementById("zip");
+    zipcode.oninput = function(){
+      var patt = new RegExp("[^0-9]");
+      if(patt.test(this.value)){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only Numeric");
+      }
+      if(this.value.length > 5){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only 5 character");
+      }
+    };
+
+    var phonenumber = document.getElementById("phnum");
+    phonenumber.oninput = function(){
+      var patt = new RegExp("[^0123456789+]");
+      if(patt.test(this.value)){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only Numeric");
+      }
+    };
+
+    var cellnumber = document.getElementById("cpnum");
+    cellnumber.oninput = function(){
+      var patt = new RegExp("([^0123456789+])");
+      if(patt.test(this.value)){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only Numeric");
+      }
+    };
+
+    var day = document.getElementById("day");
+    day.oninput = function(){
+      var patt = new RegExp("[^0-9]");
+      if(patt.test(this.value)){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only Numeric");
+      }
+      if(this.value.length > 2){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only 2 character");
+      }
+    };
+
+    var month = document.getElementById("month");
+    month.oninput = function(){
+      var patt = new RegExp("[^0-9]");
+      if(patt.test(this.value)){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only Numeric");
+      }
+      if(this.value.length > 2){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only 2 character");
+      }
+    };
+
+    var year = document.getElementById("year");
+    year.oninput = function(){
+      var patt = new RegExp("[^0-9]");
+      if(patt.test(this.value)){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only Numeric");
+      }
+      if(this.value.length > 4){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only 4 character");
+      }
+    };
+
+    var citinum = document.getElementById("citinum");
+    citinum.oninput = function(){
+      var patt = new RegExp("[^0-9]");
+      if(patt.test(this.value)){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only Numeric");
+      }
+      if(this.value.length > 13){
+        this.value = this.value.substring(0,this.value.length-1);
+        window.alert("Only 13 character");
+      }
+    };
+
+    function SaveData(){
+      for(i = 0 ; i < allField.length ; i++){
+        document.cookie = allField[i]+"="+document.getElementById(allField[i]).value+"; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+      }
+    }
+
+    function LoadCookie(){
+      var allCookie = document.cookie;
+      console.log(allCookie);
+      var cookieSp = allCookie.split(";");
+      for(i = 0 ; i < cookieSp.length ; i++){
+        var st = cookieSp[i].trim().split("=");
+        //console.log(st[0]+" "+st[1]);
+
+        if(st[0] == "issubmit" && st[1] == "true"){
+            document.cookie = "issubmit=false";
+            var str = "<table>";
+            for(x in cookieSp){
+              var stt = cookieSp[x].trim().split("=");
+              if(stt[0]!="issubmit"){
+                str += "<tr><th>"+stt[0]+"</th><th>"+stt[1]+"</th></tr>"
+              }
+            }
+            str += "</table>"
+            document.getElementById("table").innerHTML = str;
+          }
+        else{
+          document.getElementById(st[0]).value = st[1];
+        }
+      }
+    }
+
+    function ClearText(){
+      for(i = 0 ; i < allField.length-3 ; i++){
+        document.getElementById(allField[i]).value = "";
+      }
+      document.getElementById(allField[allField.length-3]).value = "aqua";
+      document.getElementById(allField[allField.length-2]).value = "rat";
+      document.getElementById(allField[allField.length-1]).value = "mon";
+    }
+
+    function Submit(){
+      var cellnumber1 = document.getElementById("cpnum").value;
+      var phonenumber1 = document.getElementById("phnum").value;
+      var citinum1 = document.getElementById("citinum").value;
+      var zipcode1 = document.getElementById("zip").value;
+      if(cellnumber1.length < 12 || phonenumber1.length < 11 || citinum1.length < 13 || zipcode1.length < 5){
+        window.alert("Invalid input.");
+      }
+      else{
+        SaveData();
+        document.cookie = "issubmit=true";
+        window.alert(document.cookie);
+        document.location.reload(true);
+      }
+      
+    }
+    window.onload = LoadCookie();
+  </script>
+
+</body>
+</html>
